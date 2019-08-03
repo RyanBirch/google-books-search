@@ -56,8 +56,6 @@ class Search extends React.Component {
 
 
   saveBook = book => {
-    console.log('book: ')
-    console.log(book)
     API.postBook(book)
       .then(res => console.log(res))
   }
@@ -84,7 +82,8 @@ class Search extends React.Component {
                 <Results 
                   key={book.link}
                   book={book} 
-                  saveBook={() => this.saveBook(book)}
+                  handleClick={() => this.saveBook(book)}
+                  action="Save"
                 />
               )
             })

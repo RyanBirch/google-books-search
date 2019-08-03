@@ -3,12 +3,13 @@ const db = require('../models')
 
 // get all saved books
 router.get('/api/books', (req, res) => {
-  console.log('get books')
+  db.Book.find({})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err))
 })
 
 // save a book to the database
 router.post('/api/books', (req, res) => {
-  console.log(req.body)
   db.Book.create(req.body)
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err))
@@ -16,7 +17,9 @@ router.post('/api/books', (req, res) => {
 
 // delete a book from the database
 router.delete('/api/books/:id', (req, res) => {
-  console.log('delete books')
+  db.Book.deleteOne({ _id: req.params.id })
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err))
 })
 
 module.exports = router

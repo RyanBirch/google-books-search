@@ -12,17 +12,6 @@ function Form(props) {
       />
       <button type="submit">Search</button>
     </form>
-
-    // <form onSubmit={this.handleSubmit}>
-    //   Find a book: 
-    //   <input 
-    //     type="text" 
-    //     value={this.state.searchTerm}
-    //     name="searchTerm"
-    //     onChange={this.handleInputChange}
-    //   />
-    //   <button type="submit">Search</button>
-    // </form>
   )
 }
 
