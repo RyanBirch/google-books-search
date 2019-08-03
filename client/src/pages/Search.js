@@ -20,9 +20,27 @@ class Search extends React.Component {
     let searchTerm = this.state.searchTerm
     API.search(searchTerm)
       .then(res => {
+
         let bookResults = res.data.items
-        console.log(bookResults)
+        let books = []
         
+        bookResults.forEach(item => {
+          let book = {}
+          // grab data from api
+          book.title = item.volumeInfo.title
+          book.author = item.volumeInfo.authors[0]
+          book.description = item.volumeInfo.description 
+          book.image = item.volumeInfo.imageLinks.thumbnail 
+          book.link = item.volumeInfo.infoLink
+
+          // add to book array
+          books.push(book)
+        })
+
+        // update state with book results
+        this.setState({ bookResults: books }, () => {
+          console.log(this.state.bookResults)
+        })
       })
   }
 
@@ -42,6 +60,23 @@ class Search extends React.Component {
           />
           <button type="submit">Search</button>
         </form>
+
+        {
+          this.state.bookResults.length ? (
+            this.state.bookResults.map(book => {
+              return (
+                <div key={book.link}>
+                  <h2>{book.title}</h2>
+                  <img src={book.image} width="25%" height="auto" alt="book" />
+                  <h3>{book.author}</h3>
+                  <p>{book.description}</p>
+                  <a href={book.link}>More info</a>
+                </div>
+              )
+            })
+          ) : ''
+        }
+
       </div>
     )
   }
