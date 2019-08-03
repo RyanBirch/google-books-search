@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import API from '../utils/API'
 import Results from '../components/Results'
+import Form from '../components/Form'
 
 class Search extends React.Component {
 
@@ -68,19 +69,12 @@ class Search extends React.Component {
         <h1>Search Page</h1>
         <Link to="/saved">Saved Books</Link>
 
-
         {/* generic search */}
-        <form onSubmit={this.handleSubmit}>
-          Find a book: 
-          <input 
-            type="text" 
-            value={this.state.searchTerm}
-            name="searchTerm"
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Search</button>
-        </form>
-
+        <Form 
+          handleSubmit={this.handleSubmit}
+          searchTerm={this.state.searchTerm}
+          handleInputChange={this.handleInputChange}
+        />
 
         {/* display search results */}
         {
