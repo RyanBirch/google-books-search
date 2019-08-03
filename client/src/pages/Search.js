@@ -57,6 +57,8 @@ class Search extends React.Component {
   saveBook = book => {
     console.log('book: ')
     console.log(book)
+    API.postBook(book)
+      .then(res => console.log(res))
   }
 
 
@@ -85,30 +87,11 @@ class Search extends React.Component {
           this.state.bookResults.length ? (
             this.state.bookResults.map(book => {
               return (
-                // <div key={book.link}>
-                //   <h2>{book.title}</h2>
-                //   <img src={book.image} width="10%" height="auto" alt="book" />
-                //   <h3>{book.author}</h3>
-                //   <p>{book.description}</p>
-                //   <a href={book.link} target="_blank">More info</a>
-                //   <button onClick={this.saveBook}>Save</button>
-                // </div>
-
                 <Results 
                   key={book.link}
                   book={book} 
                   saveBook={() => this.saveBook(book)}
                 />
-
-                // <Results 
-                //   key={book.link}
-                //   title={book.title}
-                //   image={book.image}
-                //   author={book.author}
-                //   description={book.description}
-                //   link={book.link}
-                //   saveBook={this.saveBook}
-                // />
               )
             })
           ) : ''
