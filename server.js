@@ -16,10 +16,11 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
 
-// Define API routes here
+// api routes
+const routes = require('./routes/apiRoutes')
+app.use(routes)
 
 // Send every other request to the React app
-// Define any API routes before this runs
 const path = require('path')
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './client/build/index.html'))
