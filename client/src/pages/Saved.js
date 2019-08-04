@@ -9,7 +9,11 @@ class Saved extends React.Component {
     books: ''
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
+    this.displayBooks()
+  }
+
+  displayBooks = () => {
     API.getAllBooks()
       .then(res => {
         this.setState({
@@ -20,7 +24,7 @@ class Saved extends React.Component {
 
   handleDelete = id => {
     API.deleteBook(id)
-      .then(res => console.log(res))
+      .then(res => this.displayBooks())
   }
 
   render() {
