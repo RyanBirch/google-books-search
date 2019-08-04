@@ -67,7 +67,7 @@ class Search extends React.Component {
         <h1>Search Page</h1>
         <Link to="/saved">Saved Books</Link>
 
-        {/* generic search */}
+        {/* search */}
         <Form 
           handleSubmit={this.handleSubmit}
           searchTerm={this.state.searchTerm}

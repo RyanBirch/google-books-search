@@ -7,6 +7,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <h1>Google Books Search</h1>
         <Switch>
           <Route exact path="/" component={Search} />
           <Route exact path="/saved" component={Saved} />
