@@ -11,7 +11,7 @@ function Results(props) {
     //   <button onClick={props.handleClick}>{props.action}</button>
     // </div>
 
-      <div class="container">
+      <div className="container">
         <div className="card mb-3">
           <div className="row no-gutters">
             <div className="col-md-3">

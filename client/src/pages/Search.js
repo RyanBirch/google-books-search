@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import API from '../utils/API'
 import Results from '../components/Results'
 import Form from '../components/Form'
+import Navbar from '../components/Navbar'
 
 class Search extends React.Component {
 
@@ -64,8 +65,12 @@ class Search extends React.Component {
   render() {
     return (
       <div>
+        <Navbar 
+          link="/saved" 
+          linkName="Saved Books" 
+        />
         <h1>Search Page</h1>
-        <Link to="/saved">Saved Books</Link>
+        {/* <Link to="/saved">Saved Books</Link> */}
 
         {/* search */}
         <Form 

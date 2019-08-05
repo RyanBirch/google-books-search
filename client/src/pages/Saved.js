@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import API from '../utils/API'
 import Results from '../components/Results'
+import Navbar from '../components/Navbar'
 
 class Saved extends React.Component {
 
@@ -30,8 +31,12 @@ class Saved extends React.Component {
   render() {
     return (
       <div>
+        <Navbar 
+          link="/" 
+          linkName="Search" 
+        />
         <h1>Saved Books</h1>
-        <Link to="/">Search Page</Link>
+        {/* <Link to="/">Search Page</Link> */}
 
         <div>
           {
