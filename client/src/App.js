@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <div className="container" style={{ paddingTop: "9em" }}>
+          <div className="container" style={{ paddingTop: "9em", paddingBottom: "3em" }}>
             <Route exact path="/" component={Search} />
             <Route exact path="/saved" component={Saved} />
           </div>

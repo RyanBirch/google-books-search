@@ -113,8 +113,14 @@ class Search extends React.Component {
           ) : ''
         }
 
-        {this.state.page ? <button onClick={this.changePage}>Prev Page</button> : ''}
-        <button onClick={this.changePage}>Next Page</button>
+        <div className="row">
+          <div className="col-6 text-right">
+            {this.state.page ? <a href="#"><button onClick={this.changePage} className="btn btn-info">Prev Page</button></a> : ''}
+          </div>
+          <div className="col-6">
+            {this.state.searchTerm ? <a href="#"><button onClick={this.changePage} className="btn btn-info">Next Page</button></a> : ''}
+          </div>
+        </div>
       </div>
     )
   }
