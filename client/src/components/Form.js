@@ -10,7 +10,7 @@ function Form(props) {
         name="searchTerm"
         onChange={props.handleInputChange}
       />
-      <button type="submit">Search</button>
+      <button type="submit" className="btn btn-primary">Search</button>
     </form>
   )
 }

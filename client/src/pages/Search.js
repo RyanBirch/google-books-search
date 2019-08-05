@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import API from '../utils/API'
 import Results from '../components/Results'
 import Form from '../components/Form'
@@ -9,12 +8,13 @@ class Search extends React.Component {
 
   state = {
     searchTerm: '',
-    bookResults: ''
+    bookResults: '',
+    page: 0
   }
 
 
   componentDidMount() {
-    API.search('programming')
+    API.search('programming', this.state.page * 10)
       .then(res => this.getResults(res))
   }
 
@@ -29,7 +29,7 @@ class Search extends React.Component {
     event.preventDefault()
 
     let searchTerm = this.state.searchTerm
-    API.search(searchTerm)
+    API.search(searchTerm, this.state.page * 10)
       .then(res => this.getResults(res))
   }
 
@@ -41,14 +41,16 @@ class Search extends React.Component {
     bookResults.forEach(item => {
       let book = {}
       // grab data from api
-      book.title = item.volumeInfo.title
-      book.author = item.volumeInfo.authors[0]
-      book.description = item.volumeInfo.description
-      book.image = item.volumeInfo.imageLinks.thumbnail
-      book.link = item.volumeInfo.infoLink
+      if (item.volumeInfo.title && item.volumeInfo.authors && item.volumeInfo.description && item.volumeInfo.imageLinks.thumbnail && item.volumeInfo.infoLink) {
+        book.title = item.volumeInfo.title 
+        book.author = item.volumeInfo.authors[0]
+        book.description = item.volumeInfo.description
+        book.image = item.volumeInfo.imageLinks.thumbnail
+        book.link = item.volumeInfo.infoLink
 
-      // add to book array
-      books.push(book)
+        // add to book array
+        books.push(book)
+      } 
     })
 
     // update state with book results
@@ -62,6 +64,21 @@ class Search extends React.Component {
   }
 
 
+  changePage = event => {
+    if (event.target.textContent === 'Next Page') {
+      this.setState({ page: this.state.page + 1 }, () => {
+        API.search(this.state.searchTerm, this.state.page * 10)
+        .then(res => this.getResults(res))
+      })
+    } else {
+      this.setState({ page: this.state.page - 1 }, () => {
+        API.search(this.state.searchTerm, this.state.page * 10)
+        .then(res => this.getResults(res))
+      })
+    }
+  }
+
+
   render() {
     return (
       <div>
@@ -69,15 +86,16 @@ class Search extends React.Component {
           link="/saved" 
           linkName="Saved Books" 
         />
-        <h1>Search Page</h1>
-        {/* <Link to="/saved">Saved Books</Link> */}
-
-        {/* search */}
-        <Form 
-          handleSubmit={this.handleSubmit}
-          searchTerm={this.state.searchTerm}
-          handleInputChange={this.handleInputChange}
-        />
+        <div className="text-center mb-5">
+          <h1>Search Page</h1>
+  
+          {/* search */}
+          <Form 
+            handleSubmit={this.handleSubmit}
+            searchTerm={this.state.searchTerm}
+            handleInputChange={this.handleInputChange}
+          />
+        </div>
 
         {/* display search results */}
         {
@@ -95,6 +113,8 @@ class Search extends React.Component {
           ) : ''
         }
 
+        {this.state.page ? <button onClick={this.changePage}>Prev Page</button> : ''}
+        <button onClick={this.changePage}>Next Page</button>
       </div>
     )
   }
