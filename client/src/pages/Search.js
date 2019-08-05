@@ -28,9 +28,11 @@ class Search extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    let searchTerm = this.state.searchTerm
-    API.search(searchTerm, this.state.page * 10)
-      .then(res => this.getResults(res))
+    this.setState({ page: 0 }, () => {
+      let searchTerm = this.state.searchTerm
+      API.search(searchTerm, this.state.page * 10)
+        .then(res => this.getResults(res))
+    })
   }
 
 
