@@ -30,4 +30,4 @@ Full stack MERN app (MongoDB, Express, React, Node) utilizing the Google Books a
 ---
 
 ## Demo
-See the app here: <a href="#">Google Books Search</a>
+See the app here: <a href="https://secret-taiga-61650.herokuapp.com/">Google Books Search</a>
