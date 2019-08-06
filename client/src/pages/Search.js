@@ -19,9 +19,9 @@ class Search extends React.Component {
       .then(res => this.getResults(res))
   }
 
-  // 
-  notify = () => {
-    toast.info('Book Added!', {
+  // show toast notification when a book is saved
+  notify = (title) => {
+    toast.info(`${title} Added!`, {
       position: toast.POSITION.BOTTOM_CENTER,
       autoClose: 3000
     })
@@ -72,7 +72,7 @@ class Search extends React.Component {
   saveBook = book => {
     API.postBook(book)
       .then(res => {
-        this.notify()
+        this.notify(book.title)
       })
   }
 
