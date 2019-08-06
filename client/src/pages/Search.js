@@ -3,6 +3,8 @@ import API from '../utils/API'
 import Results from '../components/Results'
 import Form from '../components/Form'
 import Navbar from '../components/Navbar'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 class Search extends React.Component {
 
@@ -12,10 +14,17 @@ class Search extends React.Component {
     page: 0
   }
 
-
   componentDidMount() {
     API.search('programming', this.state.page * 10)
       .then(res => this.getResults(res))
+  }
+
+  // 
+  notify = () => {
+    toast.info('Book Added!', {
+      position: toast.POSITION.BOTTOM_CENTER,
+      autoClose: 3000
+    })
   }
 
 
@@ -62,7 +71,9 @@ class Search extends React.Component {
 
   saveBook = book => {
     API.postBook(book)
-      .then(res => console.log(res))
+      .then(res => {
+        this.notify()
+      })
   }
 
 
@@ -88,6 +99,9 @@ class Search extends React.Component {
           link="/saved" 
           linkName="Saved Books" 
         />
+
+        <ToastContainer />  
+
         <div className="text-center mb-5">
           <h1>Search Page</h1>
   

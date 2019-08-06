@@ -1,23 +1,25 @@
 # Google Books Search
 
-# Overview
+## Overview
 Full stack MERN app (MongoDB, Express, React, Node) utilizing the Google Books api to allow users to search for books and save their favorites to their favorites list. Users can read summaries of books and follow a link to the Google Books site to get more info about the book.
 
 <img src="./client/public/images/Screen Shot 2019-08-05 at 2.25.38 AM.png">
 
 ---
 
-# Technologies Used
+## Technologies Used
+* Bootstrap
 * React
 * Node.js
 * Express
 * MongoDB
 * Mongoose
 * Axios
+* React-toastify
 
 --- 
 
-# Installation 
+## Installation 
 1. Make sure you have Node and MongoDB installed on your local machine
 2. Clone this repository to your computer
 3. Run 'mongod' in the terminal to start the mongo daemon
@@ -27,5 +29,5 @@ Full stack MERN app (MongoDB, Express, React, Node) utilizing the Google Books a
 
 ---
 
-# Demo
+## Demo
 See the app here: <a href="#">Google Books Search</a>
